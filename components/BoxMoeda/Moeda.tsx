@@ -6,12 +6,15 @@ import { MainStyles } from "@/styles/main";
 import Reload from "../icon/Reload";
 import Trash from "../icon/Trash";
 import { removeItem } from "@/Store/store";
+import Change from "../icon/Cambio";
+import ChangeOption from "./ChageOption/ChangeOption";
 
 interface Prop {
   title: string;
   high: string;
   low: string;
   timestamp: string;
+  varBid: number;
 }
 
 export interface PropMoeda {
@@ -21,7 +24,8 @@ export interface PropMoeda {
 
 export default function Moeda({ Code, handleDelete }: PropMoeda) {
   const [data, setData] = useState<Prop>();
-
+  const [IsConverted, setIsConverted] = useState(false);
+  
   async function dataGet() {
     getValorCotacao({ Code: Code }).then((res) => {
       const key = Object.keys(res).find((k) => k.startsWith(Code));
@@ -38,6 +42,7 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
             currency: "BRL",
           }),
           timestamp: exchangeData.create_date,
+          varBid: parseFloat(parseFloat(exchangeData.pctChange).toFixed(2)),
         });
       }
     });
@@ -57,10 +62,38 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
         <View style={MainStyles.container_item}>
           <Text style={MainStyles.Text_title}>{data.title}</Text>
           <View style={MainStyles.hr} />
-          <View style={MainStyles.flex}>
-            <Text style={MainStyles.Text_primary}>Maxima {data.high}</Text>
-            <Text style={MainStyles.Text_primary}>Minimas {data.low}</Text>
-          </View>
+          {IsConverted ? (
+            <ChangeOption value={data.high} />
+          ) : (
+            <View style={{ ...MainStyles.flex, position: "relative" }}>
+              <Text style={MainStyles.Text_primary}>Maxima {data.high}</Text>
+              <Text style={MainStyles.Text_primary}>Minimas {data.low}</Text>
+              {data.varBid > 0 ? (
+                <Text
+                  style={{
+                    ...MainStyles.Text_green,
+                    position: "absolute",
+                    right: 10,
+                    top: 10,
+                  }}
+                >
+                  +{data.varBid}
+                </Text>
+              ) : (
+                <Text
+                  style={{
+                    ...MainStyles.Text_red,
+                    position: "absolute",
+                    right: 10,
+                    top: 10,
+                  }}
+                >
+                  {data.varBid}
+                </Text>
+              )}
+            </View>
+          )}
+
           <Text style={MainStyles.Text_second}>
             {FormateDate(data.timestamp)}
           </Text>
@@ -70,6 +103,7 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
               handleDelete(Code);
             }}
           />
+          <Change onPress={() => { setIsConverted(!IsConverted) }} />
         </View>
       ) : (
         <Text>Loading...</Text>
