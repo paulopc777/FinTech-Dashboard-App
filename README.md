@@ -1,3 +1,8 @@
+# Listas
+
+   Flat list so renderiza oss componentes que podem aparecer na tela , os Scroll view renderiza os todos os componentes 
+
+
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).

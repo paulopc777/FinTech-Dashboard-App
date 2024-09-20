@@ -1,3 +1,4 @@
+import { MainStyles } from "@/styles/main";
 import { TouchableOpacity, Image, StyleSheet } from "react-native";
 
 interface Prosp {
@@ -14,7 +15,10 @@ const style = StyleSheet.create({
 
 export default function Trash({ onPress }: Prosp) {
   return (
-    <TouchableOpacity style={style.icons} onPress={onPress}>
+    <TouchableOpacity
+      style={{ ...style.icons, ...MainStyles.border, padding: 2 }}
+      onPress={onPress}
+    >
       <Image source={require("@/assets/images/Trash.svg")} />
     </TouchableOpacity>
   );

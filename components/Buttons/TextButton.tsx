@@ -1,9 +1,9 @@
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity  } from "react-native";
 
 export default function TextButton() {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity >
       <Text>Clique aqui !</Text>
-    </TouchableOpacity>
+    </TouchableOpacity >
   );
 }

@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import { FormateDate } from "./Utils/DateConverte";
 import { useEffect, useState } from "react";
-import { getValorCotacao } from "@/services/getCotacao";
+import { getValorCotacao } from "@/services/GetCotacao";
 import { MainStyles } from "@/styles/main";
 import Reload from "../icon/Reload";
 import Trash from "../icon/Trash";
@@ -25,12 +25,14 @@ export interface PropMoeda {
 export default function Moeda({ Code, handleDelete }: PropMoeda) {
   const [data, setData] = useState<Prop>();
   const [IsConverted, setIsConverted] = useState(false);
-  
+
   async function dataGet() {
     getValorCotacao({ Code: Code }).then((res) => {
       const key = Object.keys(res).find((k) => k.startsWith(Code));
+
       if (key) {
         const exchangeData = res[key];
+
         setData({
           title: exchangeData.name,
           high: parseFloat(exchangeData.high).toLocaleString("pt-BR", {
@@ -46,6 +48,7 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
         });
       }
     });
+    return;
   }
 
   const handleUpdate = () => {
@@ -62,6 +65,7 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
         <View style={MainStyles.container_item}>
           <Text style={MainStyles.Text_title}>{data.title}</Text>
           <View style={MainStyles.hr} />
+
           {IsConverted ? (
             <ChangeOption value={data.high} />
           ) : (
@@ -93,7 +97,6 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
               )}
             </View>
           )}
-
           <Text style={MainStyles.Text_second}>
             {FormateDate(data.timestamp)}
           </Text>
@@ -103,7 +106,11 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
               handleDelete(Code);
             }}
           />
-          <Change onPress={() => { setIsConverted(!IsConverted) }} />
+          <Change
+            onPress={() => {
+              setIsConverted(!IsConverted);
+            }}
+          />
         </View>
       ) : (
         <Text>Loading...</Text>

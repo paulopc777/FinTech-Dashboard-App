@@ -1,4 +1,5 @@
-import { TouchableOpacity, Image, StyleSheet } from "react-native";
+import { MainStyles } from "@/styles/main";
+import { TouchableOpacity , Image, StyleSheet } from "react-native";
 
 interface Prosp {
   onPress: any;
@@ -14,8 +15,8 @@ const style = StyleSheet.create({
 
 export default function Reload({ onPress }: Prosp) {
   return (
-    <TouchableOpacity style={style.icons} onPress={onPress}>
+    <TouchableOpacity    style={{ ...style.icons, ...MainStyles.border, padding: 2 }} onPress={onPress}>
       <Image source={require("@/assets/images/Reload.svg")} />
-    </TouchableOpacity>
+    </TouchableOpacity >
   );
 }

@@ -15,13 +15,19 @@ export default function Menu({ setData }: MenuPros) {
   return (
     <View>
       <View style={MainStyles.double_container}>
-        <InputText value={value} onChange={setValue} />
+        <InputText
+          placeholder="codigo da moeda"
+          value={value}
+          onChange={setValue}
+        />
         <ButtonPersonal
           color={Color.container}
           accessibilityLabel="as"
           title="Add"
           onPress={() => {
-            setData((d: any) => (d ? [...d, value] : [value]));
+            if (value.length > 0)
+              setData((d: any) => (d ? [...d, value.toLocaleUpperCase()] : [value.toLocaleUpperCase()]));
+              setValue("");
           }}
         />
       </View>

@@ -15,18 +15,25 @@ export const MainStyles = StyleSheet.create({
     justifyContent: "center",
     padding: 20,
     width: w_full,
+  
   },
   double_container: {
     display: "flex",
     flexDirection: "row",
     gap: 5,
   },
+  border:{
+    borderColor: Color.border,
+    borderWidth: 1,
+    borderRadius: 5,
+
+  },
   container_item: {
     backgroundColor: Color.container,
     borderRadius: 5,
     borderColor: Color.border,
     borderWidth: 1,
-    padding: 10,
+    padding: 12,
     marginTop: 10,
     maxWidth: 220,
     position: "relative",
@@ -34,13 +41,19 @@ export const MainStyles = StyleSheet.create({
   Text_title: {
     color: Color.text_primary,
     fontSize: 15,
-    fontWeight: 600,
+    fontWeight:"bold"
   },
   Text_primary: {
     color: Color.text_primary,
   },
   Text_second: {
     color: Color.text_second,
+  },
+  Text_green: {
+    color: "#5FCDD9",
+  },
+  Text_red: {
+    color: "#F25270",
   },
   flex: {
     display: "flex",
@@ -57,5 +70,9 @@ export const MainStyles = StyleSheet.create({
     backgroundColor: Color.background_container,
     borderColor: Color.background,
   },
-  
+  center: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
