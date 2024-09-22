@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const key = "InitialValue";
 
-const storeDataSet = async (data: string[]) => {
+const StoreDataSet = async (data: string[]) => {
   try {
     await AsyncStorage.setItem(key, JSON.stringify(data));
   } catch (error) {
@@ -11,11 +11,12 @@ const storeDataSet = async (data: string[]) => {
   }
 };
 
-export const getstoreData = async () => {
+export const GetstoreData = async () => {
   try {
     const value = await AsyncStorage.getItem(key);
     return value != null ? JSON.parse(value) : null;
   } catch (error) {
+    await AsyncStorage.clear();
     console.error("Error getting item:", error);
     return null;
   }
@@ -24,7 +25,7 @@ export const getstoreData = async () => {
 export const UpdateData = async (data: string[]) => {
   try {
     await AsyncStorage.removeItem(key).then(async (r) => {
-      await storeDataSet(data);
+      await StoreDataSet(data);
     });
   } catch (error) {
     console.error("Error removing item:", error);
@@ -33,7 +34,7 @@ export const UpdateData = async (data: string[]) => {
 
 export const removeItem = async (Code: string) => {
   try {
-    const d = await getstoreData();
+    const d = await GetstoreData();
     const dd = d.filter((d: string) => d != Code);
     console.log(dd);
     if (dd) {

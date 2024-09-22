@@ -1,8 +1,10 @@
 export const Color = {
-  background: "#010409",
-  background_container: "#0D1117",
-  container: "#151B23",
-  border: "#3D444D",
+  background: "#18171F",
+  background_container: "#25252F",
+  container: "#25252F",
+  border: "#32323F",
   text_primary: "#F0F6FC",
-  text_second: "#9198A1",
+  text_second: "#85858A",
+  text_dark: "#494949",
+  green: "#0B8C38",
 };

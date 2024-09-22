@@ -1,12 +1,12 @@
-import { Text, View, StyleSheet } from "react-native";
-import React, { memo } from "react";
+import { View } from "react-native";
+import React from "react";
 
-import Menu from "@/components/menuAdd/Menu";
 import { MainStyles } from "@/styles/main";
 import { useEffect, useState } from "react";
 import Moeda from "@/components/BoxMoeda/Moeda";
-import { getstoreData, removeItem, UpdateData } from "@/Store/store";
+import { GetstoreData, removeItem, UpdateData } from "@/Store/store";
 import StatusBarCom from "@/components/StatusBar/StatusBarCom";
+import Menu from "@/components/menuAdd/Menu";
 
 export default function App() {
   const [data, setData] = useState<string[]>();
@@ -18,7 +18,7 @@ export default function App() {
 
   useEffect(() => {
     async function fetch() {
-      const dd = await getstoreData();
+      const dd = await GetstoreData();
       setData(dd);
     }
     fetch();

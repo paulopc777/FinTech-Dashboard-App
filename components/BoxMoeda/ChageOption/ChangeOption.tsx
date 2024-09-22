@@ -4,7 +4,7 @@ import { Color } from "@/constants/Color";
 import { MainStyles } from "@/styles/main";
 import { useState } from "react";
 import { View, Button, Text } from "react-native";
-import { converterMoedaParaFloat } from "../Utils/DolConvert";
+import { ConverterMoedaParaFloat } from "../Utils/DolConvert";
 
 interface Props {
   value: string;
@@ -17,7 +17,7 @@ export default function ChangeOption({ value }: Props) {
   const handleChangeValue = () => {
     if (Coin.length > 0) {
       console.log(value);
-      const res = parseFloat(Coin) * converterMoedaParaFloat(value);
+      const res = parseFloat(Coin) * ConverterMoedaParaFloat(value);
       console.log(res);
       const d = res.toLocaleString("pt-BR", {
         style: "currency",

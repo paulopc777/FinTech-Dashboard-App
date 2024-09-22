@@ -1,4 +1,8 @@
-import { View } from "react-native";
+import {
+  NativeSyntheticEvent,
+  TextInputKeyPressEventData,
+  View,
+} from "react-native";
 import InputText from "../Input/InputText";
 import ButtonPersonal from "../Buttons/Button";
 import { Color } from "@/constants/Color";
@@ -9,28 +13,36 @@ interface MenuPros {
   setData: any;
 }
 
+interface PressProps {
+  e?: NativeSyntheticEvent<TextInputKeyPressEventData>;
+}
+
 export default function Menu({ setData }: MenuPros) {
   const [value, setValue] = useState("");
 
+  function handlePressAdd() {
+    if (value.length > 0)
+      setData((d: any) =>
+        d ? [...d, value.toLocaleUpperCase()] : [value.toLocaleUpperCase()]
+      );
+    setValue("");
+  }
+
   return (
-    <View>
-      <View style={MainStyles.double_container}>
-        <InputText
-          placeholder="codigo da moeda"
-          value={value}
-          onChange={setValue}
-        />
-        <ButtonPersonal
-          color={Color.container}
-          accessibilityLabel="as"
-          title="Add"
-          onPress={() => {
-            if (value.length > 0)
-              setData((d: any) => (d ? [...d, value.toLocaleUpperCase()] : [value.toLocaleUpperCase()]));
-              setValue("");
-          }}
-        />
-      </View>
+    <View
+      style={{
+        ...MainStyles.double_container,
+        width: `${100}%`,
+      }}
+    >
+      <InputText
+        placeholder="Adicionar Ativo"
+        value={value}
+        onChange={setValue}
+        handlePressEnter={handlePressAdd} // Corrigido aqui
+      />
+
+      <ButtonPersonal title="⛌" onPress={handlePressAdd} />
     </View>
   );
 }

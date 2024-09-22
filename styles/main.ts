@@ -11,49 +11,65 @@ export const MainStyles = StyleSheet.create({
   },
   container: {
     display: "flex",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
-    width: w_full,
-  
+    width: `${100}%`,
+    
   },
   double_container: {
     display: "flex",
     flexDirection: "row",
     gap: 5,
+    justifyContent: "space-between",
+    marginBottom: 15,
   },
-  border:{
+  border: {
     borderColor: Color.border,
     borderWidth: 1,
     borderRadius: 5,
-
   },
   container_item: {
     backgroundColor: Color.container,
-    borderRadius: 5,
+    borderRadius: 10,
     borderColor: Color.border,
     borderWidth: 1,
-    padding: 12,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 15,
+    paddingBottom: 15,
     marginTop: 10,
-    maxWidth: 220,
+    width: `${100}%`,
     position: "relative",
   },
   Text_title: {
     color: Color.text_primary,
     fontSize: 15,
-    fontWeight:"bold"
+    fontFamily: "Inter",
+    fontWeight: "bold",
   },
   Text_primary: {
     color: Color.text_primary,
+    fontFamily: "Inter Tight",
+    fontWeight: "bold",
+    letterSpacing: -2,
   },
   Text_second: {
     color: Color.text_second,
+    fontFamily: "Inter",
+    fontWeight: "bold",
   },
   Text_green: {
-    color: "#5FCDD9",
+    color: Color.green,
+    fontFamily: "Inter",
+    fontWeight: "bold",
+    letterSpacing: -1,
   },
   Text_red: {
     color: "#F25270",
+    fontFamily: "Inter",
+    fontWeight: "bold",
   },
   flex: {
     display: "flex",
@@ -74,5 +90,11 @@ export const MainStyles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  Shadown: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
 });

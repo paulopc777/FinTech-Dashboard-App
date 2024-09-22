@@ -7,40 +7,47 @@ import {
   StyleSheet,
   TextInput,
   TextInputChangeEventData,
+  TextInputKeyPressEventData,
 } from "react-native";
 
 const style = StyleSheet.create({
   input: {
     backgroundColor: Color.container,
-    borderColor: Color.border,
-    borderRadius: 3,
+
+    borderRadius: 10,
     borderWidth: 1,
     color: Color.text_primary,
     padding: 5,
-
-    minWidth: 170,
+    width: `${80}%`,
   },
 });
 
 interface InputProps {
   value: string;
-  onChange: any;
+  onChange: (text: string) => void; //
   placeholder: string;
+  handlePressEnter: () => void; // Corrigido o tipo da função
 }
 
 export default function InputText({
   onChange,
   value,
   placeholder,
+  handlePressEnter,
 }: InputProps) {
   return (
     <TextInput
       value={value}
       onChangeText={onChange}
-      style={{ ...style.input, ...MainStyles.Text_second }}
+      style={{
+        ...style.input,
+        ...MainStyles.Text_second,
+        ...MainStyles.Shadown,
+      }}
       placeholder={placeholder}
       inputMode="text"
       placeholderTextColor={Color.text_second}
+      onSubmitEditing={handlePressEnter} // Dispara o submit ao pressionar Enter
     />
   );
 }

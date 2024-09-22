@@ -1,5 +1,5 @@
 import { Color } from "@/constants/Color";
-import { TouchableOpacity, Image, StyleSheet } from "react-native";
+import { TouchableOpacity, Image, StyleSheet, Text } from "react-native";
 import { MainStyles } from "../../styles/main";
 
 interface Prosp {
@@ -17,10 +17,10 @@ const style = StyleSheet.create({
 export default function Change({ onPress }: Prosp) {
   return (
     <TouchableOpacity
-      style={{ ...style.icons, ...MainStyles.border, padding: 2 }}
+      style={{ ...style.icons, ...MainStyles.border, padding: 1 }}
       onPress={onPress}
     >
-      <Image source={require("@/assets/images/Cambio.svg")} />
+      <Text style={{ fontSize: 7 }}>💱</Text>
     </TouchableOpacity>
   );
 }

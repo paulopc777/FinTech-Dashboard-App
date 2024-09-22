@@ -1,16 +1,13 @@
 import { Text, View } from "react-native";
-import { FormateDate } from "./Utils/DateConverte";
 import { useEffect, useState } from "react";
-import { getValorCotacao } from "@/services/GetCotacao";
 import { MainStyles } from "@/styles/main";
 import Reload from "../icon/Reload";
 import Trash from "../icon/Trash";
-import { removeItem } from "@/Store/store";
-import Change from "../icon/Cambio";
-import ChangeOption from "./ChageOption/ChangeOption";
+import { getValorCotacao } from "@/services/getCotacao";
 
 interface Prop {
   title: string;
+  value: string;
   high: string;
   low: string;
   timestamp: string;
@@ -32,9 +29,13 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
 
       if (key) {
         const exchangeData = res[key];
-
+        console.log(exchangeData);
         setData({
-          title: exchangeData.name,
+          title: `${exchangeData.code} - ${exchangeData.codein}`,
+          value: parseFloat(exchangeData.ask).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          }),
           high: parseFloat(exchangeData.high).toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL",
@@ -61,59 +62,49 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
 
   return (
     <>
-      {data ? (
-        <View style={MainStyles.container_item}>
-          <Text style={MainStyles.Text_title}>{data.title}</Text>
-          <View style={MainStyles.hr} />
+      {!!data ? (
+        <View style={{ ...MainStyles.container_item, ...MainStyles.Shadown }}>
+          <View style={{ ...MainStyles.flex, justifyContent: "space-between" }}>
+            <Text style={MainStyles.Text_title}>{data.title}</Text>
+            {data.varBid > 0 ? (
+              <Text
+                style={{
+                  ...MainStyles.Text_green,
+                }}
+              >
+                +{data.varBid}%
+              </Text>
+            ) : (
+              <Text
+                style={{
+                  ...MainStyles.Text_red,
+                }}
+              >
+                {data.varBid}%
+              </Text>
+            )}
+          </View>
 
-          {IsConverted ? (
-            <ChangeOption value={data.high} />
-          ) : (
-            <View style={{ ...MainStyles.flex, position: "relative" }}>
-              <Text style={MainStyles.Text_primary}>Maxima {data.high}</Text>
-              <Text style={MainStyles.Text_primary}>Minimas {data.low}</Text>
-              {data.varBid > 0 ? (
-                <Text
-                  style={{
-                    ...MainStyles.Text_green,
-                    position: "absolute",
-                    right: 10,
-                    top: 10,
-                  }}
-                >
-                  +{data.varBid}
-                </Text>
-              ) : (
-                <Text
-                  style={{
-                    ...MainStyles.Text_red,
-                    position: "absolute",
-                    right: 10,
-                    top: 10,
-                  }}
-                >
-                  {data.varBid}
-                </Text>
-              )}
-            </View>
-          )}
-          <Text style={MainStyles.Text_second}>
-            {FormateDate(data.timestamp)}
+          <Text style={{ ...MainStyles.Text_primary, fontSize: 30 }}>
+            {data.value}
           </Text>
-          <Reload onPress={handleUpdate} />
+
           <Trash
             onPress={() => {
               handleDelete(Code);
             }}
           />
-          <Change
-            onPress={() => {
-              setIsConverted(!IsConverted);
-            }}
-          />
         </View>
       ) : (
-        <Text>Loading...</Text>
+        <View>
+          <Text style={MainStyles.Text_primary}>Loading...</Text>
+          <Trash
+            onPress={() => {
+              handleDelete(Code);
+            }}
+          />
+          <Reload onPress={handleUpdate} />
+        </View>
       )}
     </>
   );

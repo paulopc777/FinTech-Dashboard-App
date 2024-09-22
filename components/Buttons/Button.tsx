@@ -1,28 +1,40 @@
 import { Color } from "@/constants/Color";
-import { StyleSheet, Text, View } from "react-native";
+import { MainStyles } from "@/styles/main";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Button } from "react-native";
 
 type ColorButton = string;
 
 interface ButtonProp {
   title: string;
-  color: string;
-  accessibilityLabel: string;
-  onPress?: () => void;
+  onPress?: (e: any) => void;
 }
 
-export default function ButtonPersonal({
-  accessibilityLabel,
-  color,
-  onPress,
-  title,
-}: ButtonProp) {
+const ButtonStyle = StyleSheet.create({
+  button: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: Color.green,
+    padding: 10,
+    borderRadius: 10,
+    borderColor: Color.border,
+    borderWidth: 1,
+    width: 40,
+  },
+});
+
+export default function ButtonPersonal({ onPress, title }: ButtonProp) {
   return (
-    <Button
-      title={title}
-      color={color}
-      accessibilityLabel={accessibilityLabel}
+    <TouchableOpacity
       onPress={onPress}
-    />
+      style={{ ...MainStyles.Shadown, ...ButtonStyle.button }}
+    >
+      <Text
+        style={{ color: Color.text_primary, transform: [{ rotate: "45deg" }] }}
+      >
+        {title}
+      </Text>
+    </TouchableOpacity>
   );
 }
