@@ -16,7 +16,6 @@ export const MainStyles = StyleSheet.create({
     justifyContent: "center",
     padding: 20,
     width: `${100}%`,
-    
   },
   double_container: {
     display: "flex",
