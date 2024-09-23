@@ -15,5 +15,6 @@ export const getValorCotacao = async ({ Code }: Props) => {
     return false;
   } catch (e) {
     console.log(e);
+    return false;
   }
 };

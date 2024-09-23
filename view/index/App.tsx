@@ -9,6 +9,7 @@ import { GetstoreData, removeItem, UpdateData } from "@/Store/store";
 import Menu from "@/components/menuAdd/menu";
 import { Inter_900Black, useFonts } from "@expo-google-fonts/inter";
 import { Color } from "@/constants/Color";
+import ToastManager from "toastify-react-native";
 
 export default function App() {
   const [fontLoad] = useFonts({ Inter_900Black });
@@ -37,6 +38,11 @@ export default function App() {
   return (
     <View style={MainStyles.background}>
       <StatusBar backgroundColor="#18171F" barStyle={"light-content"} />
+      <ToastManager
+        style={{ width: `${90}vw` }}
+        height={60}
+        textStyle={{ ...MainStyles.Text_second, fontSize: 20 }}
+      />
       {fontLoad && (
         <View style={MainStyles.container}>
           <Menu setData={setData} />

@@ -5,6 +5,7 @@ import Reload from "../icon/Reload";
 import Trash from "../icon/Trash";
 import { getValorCotacao } from "@/services/GetCotacao";
 import { Color } from "@/constants/Color";
+import { Toast } from "toastify-react-native";
 
 interface Prop {
   title: string;
@@ -25,31 +26,40 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
   const [IsConverted, setIsConverted] = useState(false);
 
   async function dataGet() {
-    getValorCotacao({ Code: Code }).then((res) => {
-      const key = Object.keys(res).find((k) => k.startsWith(Code));
+    getValorCotacao({ Code: Code })
+      .then((res) => {
+        if (!res) {
+          handleDelete(Code);
+          Toast.error(`codigo do ativo invalido`, "top");
+        }
 
-      if (key) {
-        const exchangeData = res[key];
+        const key = Object.keys(res).find((k) => k.startsWith(Code));
 
-        setData({
-          title: `${exchangeData.code} - ${exchangeData.codein}`,
-          value: parseFloat(exchangeData.ask).toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          }),
-          high: parseFloat(exchangeData.high).toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          }),
-          low: parseFloat(exchangeData.low).toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          }),
-          timestamp: exchangeData.create_date,
-          varBid: parseFloat(parseFloat(exchangeData.pctChange).toFixed(2)),
-        });
-      }
-    });
+        if (key) {
+          const exchangeData = res[key];
+
+          setData({
+            title: `${exchangeData.code} - ${exchangeData.codein}`,
+            value: parseFloat(exchangeData.ask).toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            }),
+            high: parseFloat(exchangeData.high).toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            }),
+            low: parseFloat(exchangeData.low).toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            }),
+            timestamp: exchangeData.create_date,
+            varBid: parseFloat(parseFloat(exchangeData.pctChange).toFixed(2)),
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     return;
   }
 
