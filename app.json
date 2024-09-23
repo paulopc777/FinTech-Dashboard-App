@@ -28,17 +28,7 @@
     },
     "plugins": [
       "expo-router",
-
-      [
-        "expo-font",
-        {
-          "fonts": [
-            "./assets/fonts/Inte-Regular.ttf",
-            "./assets/fonts/Inte-Black.ttf",
-            "./assets/fonts/Inte-SemiBold.ttf"
-          ]
-        }
-      ]
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true

@@ -3,6 +3,10 @@ import { StyleSheet } from "react-native";
 
 const w_full = `${100}%`;
 
+const Font = {
+  Inter_Black: "Inter_900Black",
+};
+
 export const MainStyles = StyleSheet.create({
   background: {
     height: `${100}%`,
@@ -45,30 +49,23 @@ export const MainStyles = StyleSheet.create({
   Text_title: {
     color: Color.text_primary,
     fontSize: 15,
-    fontFamily: "Inter",
-    fontWeight: "bold",
+    fontFamily: Font.Inter_Black,
   },
   Text_primary: {
     color: Color.text_primary,
-    fontFamily: "Inter Tight",
-    fontWeight: "bold",
-    letterSpacing: -2,
+    fontFamily: Font.Inter_Black,
   },
   Text_second: {
     color: Color.text_second,
-    fontFamily: "Inter",
-    fontWeight: "bold",
+    fontFamily: Font.Inter_Black,
   },
   Text_green: {
     color: Color.green,
-    fontFamily: "Inter",
-    fontWeight: "bold",
-    letterSpacing: -1,
+    fontFamily: Font.Inter_Black,
   },
   Text_red: {
     color: "#F25270",
-    fontFamily: "Inter",
-    fontWeight: "bold",
+    fontFamily: Font.Inter_Black,
   },
   flex: {
     display: "flex",

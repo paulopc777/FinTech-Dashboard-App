@@ -19,8 +19,9 @@ const ButtonStyle = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     borderColor: Color.border,
-    borderWidth: 1,
+
     width: 40,
+    height: 40,
   },
 });
 

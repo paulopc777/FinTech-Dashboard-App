@@ -1,9 +1,10 @@
-import { Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import { useEffect, useState } from "react";
 import { MainStyles } from "@/styles/main";
 import Reload from "../icon/Reload";
 import Trash from "../icon/Trash";
-import { getValorCotacao } from "@/services/getCotacao";
+import { getValorCotacao } from "@/services/GetCotacao";
+import { Color } from "@/constants/Color";
 
 interface Prop {
   title: string;
@@ -29,7 +30,7 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
 
       if (key) {
         const exchangeData = res[key];
-        console.log(exchangeData);
+
         setData({
           title: `${exchangeData.code} - ${exchangeData.codein}`,
           value: parseFloat(exchangeData.ask).toLocaleString("pt-BR", {
@@ -96,14 +97,15 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
           />
         </View>
       ) : (
-        <View>
-          <Text style={MainStyles.Text_primary}>Loading...</Text>
+        <View style={{ ...MainStyles.container_item, ...MainStyles.Shadown }}>
+          <Text style={MainStyles.Text_primary}>Carregando ...</Text>
           <Trash
             onPress={() => {
               handleDelete(Code);
             }}
           />
           <Reload onPress={handleUpdate} />
+          <ActivityIndicator color={Color.green} />
         </View>
       )}
     </>

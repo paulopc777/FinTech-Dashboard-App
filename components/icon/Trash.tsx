@@ -19,7 +19,7 @@ export default function Trash({ onPress }: Prosp) {
       style={{ ...style.icons, ...MainStyles.border }}
       onPress={onPress}
     >
-      <Text style={{ fontSize: 5 }}>🗑️</Text>
+      <Text style={{ fontSize: 13 }}>🗑️</Text>
     </TouchableOpacity>
   );
 }

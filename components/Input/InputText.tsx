@@ -13,9 +13,7 @@ import {
 const style = StyleSheet.create({
   input: {
     backgroundColor: Color.container,
-
     borderRadius: 10,
-    borderWidth: 1,
     color: Color.text_primary,
     padding: 5,
     width: `${80}%`,

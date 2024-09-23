@@ -8,8 +8,8 @@ interface Prosp {
 const style = StyleSheet.create({
   icons: {
     position: "absolute",
-    bottom: 10,
-    right: 10,
+    bottom: 9,
+    right: 40,
   },
 });
 

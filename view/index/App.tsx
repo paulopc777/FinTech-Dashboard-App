@@ -1,14 +1,18 @@
-import { View } from "react-native";
+import { View, StatusBar } from "react-native";
 import React from "react";
 
 import { MainStyles } from "@/styles/main";
 import { useEffect, useState } from "react";
 import Moeda from "@/components/BoxMoeda/Moeda";
 import { GetstoreData, removeItem, UpdateData } from "@/Store/store";
-import StatusBarCom from "@/components/StatusBar/StatusBarCom";
-import Menu from "@/components/menuAdd/Menu";
+
+import Menu from "@/components/menuAdd/menu";
+import { Inter_900Black, useFonts } from "@expo-google-fonts/inter";
+import { Color } from "@/constants/Color";
 
 export default function App() {
+  const [fontLoad] = useFonts({ Inter_900Black });
+
   const [data, setData] = useState<string[]>();
 
   const handleDelete = async (Code: string) => {
@@ -32,17 +36,19 @@ export default function App() {
 
   return (
     <View style={MainStyles.background}>
-      <StatusBarCom />
-      <View style={MainStyles.container}>
-        <Menu setData={setData} />
-        {!!data && (
-          <>
-            {data.map((d) => (
-              <Moeda Code={d} key={d} handleDelete={handleDelete} />
-            ))}
-          </>
-        )}
-      </View>
+      <StatusBar backgroundColor="#18171F" barStyle={"light-content"} />
+      {fontLoad && (
+        <View style={MainStyles.container}>
+          <Menu setData={setData} />
+          {!!data && (
+            <>
+              {data.map((d) => (
+                <Moeda Code={d} key={d} handleDelete={handleDelete} />
+              ))}
+            </>
+          )}
+        </View>
+      )}
     </View>
   );
 }
