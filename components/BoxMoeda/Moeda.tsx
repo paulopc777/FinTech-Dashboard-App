@@ -1,4 +1,4 @@
-import { ActivityIndicator, Text, View } from "react-native";
+import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import { useEffect, useState } from "react";
 import { MainStyles } from "@/styles/main";
 import Reload from "../icon/Reload";
@@ -6,6 +6,7 @@ import Trash from "../icon/Trash";
 import { getValorCotacao } from "@/services/GetCotacao";
 import { Color } from "@/constants/Color";
 import { Toast } from "toastify-react-native";
+import { Redirect, useRouter } from "expo-router";
 
 interface Prop {
   title: string;
@@ -23,7 +24,8 @@ export interface PropMoeda {
 
 export default function Moeda({ Code, handleDelete }: PropMoeda) {
   const [data, setData] = useState<Prop>();
-  const [IsConverted, setIsConverted] = useState(false);
+  const [IsConverte, setIsConverte] = useState(false);
+  const router = useRouter();
 
   async function dataGet() {
     getValorCotacao({ Code: Code })
@@ -74,7 +76,12 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
   return (
     <>
       {!!data ? (
-        <View style={{ ...MainStyles.container_item, ...MainStyles.Shadown }}>
+        <TouchableOpacity
+          style={{ ...MainStyles.container_item, ...MainStyles.Shadown }}
+          onPress={() => {
+            router.replace(`/${Code}`);
+          }}
+        >
           <View style={{ ...MainStyles.flex, justifyContent: "space-between" }}>
             <Text style={MainStyles.Text_title}>{data.title}</Text>
             {data.varBid > 0 ? (
@@ -105,7 +112,7 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
               handleDelete(Code);
             }}
           />
-        </View>
+        </TouchableOpacity>
       ) : (
         <View style={{ ...MainStyles.container_item, ...MainStyles.Shadown }}>
           <Text style={MainStyles.Text_primary}>Carregando ...</Text>
