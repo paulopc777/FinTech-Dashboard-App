@@ -1,13 +1,12 @@
-import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import { useEffect, useState } from "react";
+import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import { MainStyles } from "@/styles/main";
+import { getValorCotacao } from "../../services/GetCotacao";
+import { Color } from "@/constants/Color";
 import Reload from "../icon/Reload";
 import Trash from "../icon/Trash";
-
-import { Color } from "@/constants/Color";
 import { Toast } from "toastify-react-native";
 import { Redirect, useRouter } from "expo-router";
-import { getValorCotacao } from "@/services/getCotacao";
 
 interface Prop {
   title: string;

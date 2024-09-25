@@ -1,15 +1,17 @@
 import { MainStyles } from "@/styles/main";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 
-import { getAllDataCotacao } from "@/services/getCotacao";
+import { getAllDataCotacao } from "../services/GetCotacao";
 
 import Title from "@/components/Title";
 import { Inter_900Black, useFonts } from "@expo-google-fonts/inter";
 import LineProgress from "@/components/Progress/LineProgress";
 import LineChartComponent from "@/components/Table/LineChart";
 import { filterBid } from "@/view/utils/Callculators";
+import Fontisto from "@expo/vector-icons/Fontisto";
+import { Color } from "@/constants/Color";
 
 export interface ReturnData {
   code: string;
@@ -30,6 +32,8 @@ export default function CodePage() {
   const [fontLoad] = useFonts({ Inter_900Black });
   const [Data, setData] = useState<ReturnData[]>();
   const [Line, setLine] = useState(0);
+  const router = useRouter();
+
   async function get() {
     const d = await getAllDataCotacao({ Code: Code.toString() });
     const dd = d.map(({ name, high, low, pctChange, bid }: ReturnData) => {
@@ -55,11 +59,33 @@ export default function CodePage() {
           {!!Data && (
             <>
               <Title name={Data[0].name} price={Data[0].bid} />
-              <LineChartComponent dataValues={filterBid(Data)} />
+              <LineChartComponent
+                priceMid={parseFloat(Data[0].bid)}
+                dataValues={filterBid(Data)}
+              />
             </>
           )}
         </>
       )}
+      <TouchableOpacity
+        style={{
+          position: "absolute",
+          bottom: 10,
+          right: 10,
+          backgroundColor: Color.green,
+          padding: 10,
+          borderRadius: 100,
+        }}
+        onPress={() => {
+          router.replace(`/`);
+        }}
+      >
+        <Fontisto
+          name="arrow-return-left"
+          size={24}
+          color={Color.text_primary}
+        />
+      </TouchableOpacity>
     </View>
   );
 }
