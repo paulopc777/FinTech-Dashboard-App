@@ -1,11 +1,17 @@
-import { getAllDataCotacao } from "@/services/GetCotacao";
 import { MainStyles } from "@/styles/main";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
-import Code from "../view/Code";
 
-interface ReturnData {
+import { getAllDataCotacao } from "@/services/getCotacao";
+
+import Title from "@/components/Title";
+import { Inter_900Black, useFonts } from "@expo-google-fonts/inter";
+import LineProgress from "@/components/Progress/LineProgress";
+import LineChartComponent from "@/components/Table/LineChart";
+import { filterBid } from "@/view/utils/Callculators";
+
+export interface ReturnData {
   code: string;
   codein: string;
   name: string;
@@ -21,16 +27,18 @@ interface ReturnData {
 
 export default function CodePage() {
   const { Code } = useLocalSearchParams();
+  const [fontLoad] = useFonts({ Inter_900Black });
   const [Data, setData] = useState<ReturnData[]>();
-
+  const [Line, setLine] = useState(0);
   async function get() {
     const d = await getAllDataCotacao({ Code: Code.toString() });
-    const dd = d.map(({ name, high, low, pctChange }: ReturnData) => {
+    const dd = d.map(({ name, high, low, pctChange, bid }: ReturnData) => {
       return {
         name: name,
         high: high,
         low: low,
         pctChange: pctChange,
+        bid: bid,
       };
     });
     setData(dd);
@@ -42,11 +50,15 @@ export default function CodePage() {
 
   return (
     <View style={{ ...MainStyles.background, padding: 20 }}>
-      {!!Data && (
-        <View style={{ ...MainStyles.container_item, ...MainStyles.Shadown }}>
-          <Text style={MainStyles.Text_primary}>{Data[0].name} </Text>
-          <Text style={MainStyles.Text_primary}>{Data[0].bid} </Text>
-        </View>
+      {fontLoad && (
+        <>
+          {!!Data && (
+            <>
+              <Title name={Data[0].name} price={Data[0].bid} />
+              <LineChartComponent dataValues={filterBid(Data)} />
+            </>
+          )}
+        </>
       )}
     </View>
   );

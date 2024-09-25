@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { MainStyles } from "@/styles/main";
 import Reload from "../icon/Reload";
 import Trash from "../icon/Trash";
-import { getValorCotacao } from "@/services/GetCotacao";
+
 import { Color } from "@/constants/Color";
 import { Toast } from "toastify-react-native";
 import { Redirect, useRouter } from "expo-router";
+import { getValorCotacao } from "@/services/getCotacao";
 
 interface Prop {
   title: string;
