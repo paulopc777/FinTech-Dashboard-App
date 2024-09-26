@@ -79,7 +79,7 @@ export default function LineChartComponent({ dataValues, priceMid }: Props) {
                     paddingVertical: 6,
                     borderRadius: 16,
                     backgroundColor: "white",
-                    width: "100%",
+                    width: 130,
                   }}
                 >
                   <Text
@@ -87,7 +87,7 @@ export default function LineChartComponent({ dataValues, priceMid }: Props) {
                       fontWeight: "bold",
                       textAlign: "center",
                       fontSize: 15,
-
+                      userSelect: "none",
                       zIndex: 100,
                     }}
                   >

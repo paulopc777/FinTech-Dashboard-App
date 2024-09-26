@@ -3,7 +3,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
-import { getAllDataCotacao } from "../services/GetCotacao";
+
 
 import Title from "@/components/Title";
 import { Inter_900Black, useFonts } from "@expo-google-fonts/inter";
@@ -12,6 +12,7 @@ import LineChartComponent from "@/components/Table/LineChart";
 import { filterBid } from "@/view/utils/Callculators";
 import Fontisto from "@expo/vector-icons/Fontisto";
 import { Color } from "@/constants/Color";
+import { getAllDataCotacao } from "@/services/getCotacao";
 
 export interface ReturnData {
   code: string;

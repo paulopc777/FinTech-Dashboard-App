@@ -1,4 +1,4 @@
-import { View, StatusBar } from "react-native";
+import { View, StatusBar, FlatList } from "react-native";
 import React from "react";
 
 import { MainStyles } from "@/styles/main";
@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 import Moeda from "@/components/BoxMoeda/Moeda";
 import { GetstoreData, removeItem, UpdateData } from "@/Store/store";
 
-import Menu from "@/components/menuAdd/menu";
 import { Inter_900Black, useFonts } from "@expo-google-fonts/inter";
 import { Color } from "@/constants/Color";
 import ToastManager from "toastify-react-native";
+import Menu from "@/components/menuAdd/Menu";
 
 export default function App() {
   const [fontLoad] = useFonts({ Inter_900Black });
@@ -44,14 +44,16 @@ export default function App() {
         textStyle={{ ...MainStyles.Text_second, fontSize: 20 }}
       />
       {fontLoad && (
-        <View style={MainStyles.container}>
+        <View style={{ ...MainStyles.container, flex: 1 }}>
           <Menu setData={setData} />
           {!!data && (
-            <>
-              {data.map((d) => (
-                <Moeda Code={d} key={d} handleDelete={handleDelete} />
-              ))}
-            </>
+            <FlatList
+              style={{ width: `${100}%` }}
+              data={data}
+              renderItem={({ item }) => (
+                <Moeda Code={item} key={item} handleDelete={handleDelete} />
+              )}
+            />
           )}
         </View>
       )}
