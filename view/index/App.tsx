@@ -9,7 +9,8 @@ import { GetstoreData, removeItem, UpdateData } from "@/Store/store";
 import { Inter_900Black, useFonts } from "@expo-google-fonts/inter";
 import { Color } from "@/constants/Color";
 import ToastManager from "toastify-react-native";
-import Menu from "@/components/menuAdd/Menu";
+import Menu from "@/components/menuAdd/menu";
+
 
 export default function App() {
   const [fontLoad] = useFonts({ Inter_900Black });

@@ -1,5 +1,6 @@
 interface Props {
-  Code: string ;
+  Code: string;
+  Days?: string;
 }
 
 const URL = "https://economia.awesomeapi.com.br/json/last";
@@ -20,9 +21,10 @@ export const getValorCotacao = async ({ Code }: Props) => {
   }
 };
 
-export const getAllDataCotacao = async ({ Code }: Props) => {
+export const getAllDataCotacao = async ({ Code, Days }: Props) => {
   try {
-    const res = await fetch(`${URL_A}/${Code}/7`);
+    const d = Days ? Days : 7;
+    const res = await fetch(`${URL_A}/${Code}/${d}`);
 
     if (res.status == 200) {
       const d = await res.json();

@@ -6,8 +6,9 @@ import { Button } from "react-native";
 type ColorButton = string;
 
 interface ButtonProp {
-  title: string;
+  title: any;
   onPress?: (e: any) => void;
+  style?: any;
 }
 
 const ButtonStyle = StyleSheet.create({
@@ -19,23 +20,18 @@ const ButtonStyle = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     borderColor: Color.border,
-
     width: 40,
     height: 40,
   },
 });
 
-export default function ButtonPersonal({ onPress, title }: ButtonProp) {
+export default function ButtonPersonal({ onPress, title, style }: ButtonProp) {
   return (
     <TouchableOpacity
       onPress={onPress}
       style={{ ...MainStyles.Shadown, ...ButtonStyle.button }}
     >
-      <Text
-        style={{ color: Color.text_primary, transform: [{ rotate: "45deg" }] }}
-      >
-        {title}
-      </Text>
+      <Text style={{ color: Color.text_primary, ...style }}>{title}</Text>
     </TouchableOpacity>
   );
 }

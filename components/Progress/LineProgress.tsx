@@ -1,7 +1,8 @@
 import { Color } from "@/constants/Color";
 import { MainStyles } from "@/styles/main";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
+import { ChevronUp } from "lucide-react-native";
 
 const style = StyleSheet.create({
   container: {
@@ -22,9 +23,10 @@ interface Props {
 
 export default function LineProgress({ w }: Props) {
   return (
-    <View style={{ ...MainStyles.container_item, ...MainStyles.Shadown }}>
-      <View style={style.container}>
-        <View style={{ ...style.line, width: `${w}%` }} />
+    <View style={{ ...style.container, position: "relative" }}>
+      <View style={{ ...style.line, width: `${w}%` }} />
+      <View style={{ marginLeft: `${w - 2.6}%`, marginTop: 8 }}>
+        <ChevronUp color={Color.green} width={20} height={20} />
       </View>
     </View>
   );

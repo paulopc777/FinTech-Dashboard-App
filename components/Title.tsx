@@ -1,3 +1,4 @@
+import { Color } from "@/constants/Color";
 import { MainStyles } from "@/styles/main";
 import { FormatStringThoBRL } from "@/view/utils/Callculators";
 import { Text, View } from "react-native";
@@ -5,6 +6,7 @@ import { Text, View } from "react-native";
 interface Props {
   name: string;
   price: string;
+  percent: string;
   fontSizeName?: number;
   fontSizePrice?: number;
 }
@@ -14,27 +16,35 @@ export default function Title({
   price,
   fontSizeName,
   fontSizePrice,
+  percent,
 }: Props) {
+  const style =
+    parseFloat(percent) < 0 ? MainStyles.Text_red : MainStyles.Text_green;
   return (
     <View style={{ ...MainStyles.container_item, ...MainStyles.Shadown }}>
       <Text
         style={{
           ...MainStyles.Text_primary,
-          ...MainStyles.Text_second,
-          fontSize: fontSizeName ? fontSizeName : 25,
+
+          fontSize: fontSizeName ? fontSizeName : 20,
         }}
       >
         {name}{" "}
       </Text>
-      <Text
-        style={{
-          ...MainStyles.Text_primary,
-          ...MainStyles.Text_green,
-          fontSize: fontSizePrice ? fontSizePrice : 20,
-        }}
-      >
-        {FormatStringThoBRL(price)}{" "}
-      </Text>
+      <View style={{ ...MainStyles.flex }}>
+        <Text
+          style={{
+            ...MainStyles.Text_primary,
+            ...MainStyles.Text_green,
+            fontSize: fontSizePrice ? fontSizePrice : 40,
+          }}
+        >
+          {FormatStringThoBRL(price)}
+        </Text>
+        <Text style={{ ...style, marginTop: 7 }}>
+          {percent ? percent : "-"}
+        </Text>
+      </View>
     </View>
   );
 }

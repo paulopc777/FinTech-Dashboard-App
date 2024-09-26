@@ -8,6 +8,7 @@ import ButtonPersonal from "../Buttons/Button";
 import { Color } from "@/constants/Color";
 import { MainStyles } from "@/styles/main";
 import { useState } from "react";
+import { Plus } from "lucide-react-native";
 
 interface MenuPros {
   setData: any;
@@ -42,7 +43,11 @@ export default function Menu({ setData }: MenuPros) {
         handlePressEnter={handlePressAdd} // Corrigido aqui
       />
 
-      <ButtonPersonal title="⛌" onPress={handlePressAdd} />
+      <ButtonPersonal
+        title={<Plus />}
+        onPress={handlePressAdd}
+        style={{ transform: [{ translateY: 2 }] }}
+      />
     </View>
   );
 }
