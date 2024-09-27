@@ -1,10 +1,12 @@
 import ButtonPersonal from "@/components/Buttons/Button";
-import InputText from "@/components/Input/InputText";
 import { Color } from "@/constants/Color";
 import { MainStyles } from "@/styles/main";
 import { useState } from "react";
 import { View, Button, Text } from "react-native";
 import { ConverterMoedaParaFloat } from "../Utils/DolConvert";
+import InputText from "@/components/Input/InputText";
+import { FormatStringThoBRL } from "@/view/utils/Callculators";
+import { Replace } from "lucide-react-native";
 
 interface Props {
   value: string;
@@ -15,10 +17,12 @@ export default function ChangeOption({ value }: Props) {
   const [Value, setValue] = useState("");
 
   const handleChangeValue = () => {
+    if (Number.isNaN(parseFloat(Coin))) {
+      setValue("Coloque um numero valido");
+      return;
+    }
     if (Coin.length > 0) {
-      console.log(value);
-      const res = parseFloat(Coin) * ConverterMoedaParaFloat(value);
-      console.log(res);
+      const res = parseFloat(Coin) * parseFloat(value);
       const d = res.toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL",
@@ -32,12 +36,13 @@ export default function ChangeOption({ value }: Props) {
       <Text
         style={{ ...MainStyles.Text_primary, marginTop: 10, marginBottom: 10 }}
       >
-        Valor atual : {value}
+        Valor atual : {FormatStringThoBRL(value)}
       </Text>
       <InputText
         placeholder="digite o valor "
         value={Coin}
         onChange={setCoin}
+        handlePressEnter={() => {}}
       />
 
       <View
@@ -50,9 +55,7 @@ export default function ChangeOption({ value }: Props) {
         }}
       >
         <ButtonPersonal
-          title="Cambio"
-          accessibilityLabel="Cambio"
-          color={Color.border}
+          title={<Replace width={18} />}
           onPress={handleChangeValue}
         />
         <Text style={MainStyles.Text_primary}>

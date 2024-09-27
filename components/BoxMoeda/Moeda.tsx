@@ -7,7 +7,7 @@ import Reload from "../icon/Reload";
 import Trash from "../icon/Trash";
 import { Toast } from "toastify-react-native";
 import { Redirect, useRouter } from "expo-router";
-import { getValorCotacao } from "@/services/GetCotacao";
+import { getValorCotacao } from "@/services/getCotacao";
 
 
 interface Prop {

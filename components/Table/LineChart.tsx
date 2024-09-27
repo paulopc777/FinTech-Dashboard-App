@@ -12,14 +12,20 @@ import { FormatStringThoBRL } from "@/view/utils/Callculators";
 interface Props {
   dataValues: number[];
   priceMid: number;
+  MediaMovel?: number[];
 }
 
-export default function LineChartComponent({ dataValues, priceMid }: Props) {
+export default function LineChartComponent({
+  dataValues,
+  priceMid,
+  MediaMovel,
+}: Props) {
   const screenWidth = Dimensions.get("window").width - 125;
 
   const MaxValue = Math.max.apply(null, dataValues);
   const MinValue = Math.min.apply(null, dataValues);
   //
+
   let ptData: lineDataItem[] = dataValues.map((d, index) => {
     return { value: parseFloat(d.toFixed(2)), date: index.toString() };
   });

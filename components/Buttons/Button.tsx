@@ -9,6 +9,7 @@ interface ButtonProp {
   title: any;
   onPress?: (e: any) => void;
   style?: any;
+  styleDiv?: any;
 }
 
 const ButtonStyle = StyleSheet.create({
@@ -25,7 +26,12 @@ const ButtonStyle = StyleSheet.create({
   },
 });
 
-export default function ButtonPersonal({ onPress, title, style }: ButtonProp) {
+export default function ButtonPersonal({
+  onPress,
+  title,
+  style,
+  styleDiv,
+}: ButtonProp) {
   return (
     <TouchableOpacity
       onPress={onPress}

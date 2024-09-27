@@ -1,7 +1,13 @@
 import { MainStyles } from "@/styles/main";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useEffect, useState } from "react";
-import { StatusBar, Text, TouchableOpacity, View } from "react-native";
+import { useEffect, useMemo, useState } from "react";
+import {
+  ScrollView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import Title from "@/components/Title";
 import { Inter_900Black, useFonts } from "@expo-google-fonts/inter";
@@ -10,10 +16,14 @@ import LineChartComponent from "@/components/Table/LineChart";
 import { filterBid } from "@/view/utils/Callculators";
 import Fontisto from "@expo/vector-icons/Fontisto";
 import { Color } from "@/constants/Color";
-import { getAllDataCotacao } from "@/services/GetCotacao";
+
 import ProgressDay from "@/components/Progress/ProgressDay";
 import { Undo2 } from "lucide-react-native";
 import ButtonPersonal from "@/components/Buttons/Button";
+import { getAllDataCotacao } from "@/services/getCotacao";
+import Change from "@/components/icon/Cambio";
+import ChangeOption from "@/components/BoxMoeda/ChageOption/ChangeOption";
+import { calcularMediaMovel } from "@/components/Table/utils/CallMediaMovel";
 
 export interface ReturnData {
   code: string;
@@ -33,7 +43,7 @@ export default function CodePage() {
   const { Code } = useLocalSearchParams();
   const [fontLoad] = useFonts({ Inter_900Black });
   const [Data, setData] = useState<ReturnData[]>();
-  const [TimeSelect, setTimeSelect] = useState("Ultimos 7 Dias");
+  const [TimeSelect, setTimeSelect] = useState(7);
   const router = useRouter();
 
   async function get(Days?: string) {
@@ -57,6 +67,14 @@ export default function CodePage() {
     get();
   }, []);
 
+  const MediaMovel = useMemo(() => {
+    if (Data) {
+      console.log(Data.length)
+      return calcularMediaMovel(Data, TimeSelect);
+    }
+    return [0];
+  }, [Data]);
+
   return (
     <View style={{ ...MainStyles.background, padding: 20 }}>
       <StatusBar backgroundColor="#18171F" barStyle={"light-content"} />
@@ -64,51 +82,61 @@ export default function CodePage() {
         <>
           {!!Data && (
             <>
-              <Title
-                name={Data[0].name}
-                price={Data[0].bid}
-                percent={Data[0].pctChange}
-              />
-              <ProgressDay TimeSelect={TimeSelect} data={Data} />
-
-              <View style={{ ...MainStyles.container_item }}>
-                <LineChartComponent
-                  priceMid={parseFloat(Data[0].bid)}
-                  dataValues={filterBid(Data)}
+              <ScrollView showsVerticalScrollIndicator={false}>
+                <Title
+                  name={Data[0].name}
+                  price={Data[0].bid}
+                  percent={Data[0].pctChange}
                 />
-                <View
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "flex-start",
-                    gap: 10,
-                    alignItems: "center",
-                    padding: 5,
-                  }}
-                >
-                  <ButtonPersonal
-                    title={"S"}
-                    onPress={() => {
-                      get("7");
-                      setTimeSelect("Ultimos 7 Dias");
-                    }}
+                <ProgressDay
+                  TimeSelect={`Ultimos ${TimeSelect} Dias`}
+                  data={Data}
+                />
+
+                <View style={{ ...MainStyles.container_item }}>
+                  <LineChartComponent
+                    priceMid={parseFloat(Data[0].bid)}
+                    dataValues={filterBid(Data)}
+                    MediaMovel={MediaMovel}
                   />
-                  <ButtonPersonal
-                    title={"Q"}
-                    onPress={() => {
-                      get("15");
-                      setTimeSelect("Ultimos 15 Dias");
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      gap: 10,
+                      alignItems: "center",
+                      padding: 5,
                     }}
-                  />
-                  <ButtonPersonal
-                    title={"M"}
-                    onPress={() => {
-                      get("30");
-                      setTimeSelect("Ultimos 30 Dias");
-                    }}
-                  />
+                  >
+                    <ButtonPersonal
+                      title={"S"}
+                      onPress={() => {
+                        get("7");
+                        setTimeSelect(7);
+                      }}
+                    />
+                    <ButtonPersonal
+                      title={"Q"}
+                      onPress={() => {
+                        get("15");
+                        setTimeSelect(15);
+                      }}
+                    />
+                    <ButtonPersonal
+                      title={"M"}
+                      onPress={() => {
+                        get("30");
+                        setTimeSelect(30);
+                      }}
+                    />
+                  </View>
                 </View>
-              </View>
+
+                <View style={{ ...MainStyles.container_item }}>
+                  <ChangeOption value={Data[0].bid} />
+                </View>
+              </ScrollView>
             </>
           )}
         </>
