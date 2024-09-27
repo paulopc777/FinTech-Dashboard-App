@@ -42,9 +42,8 @@ export default function Menu({ setData }: MenuPros) {
         onChange={setValue}
         handlePressEnter={handlePressAdd} // Corrigido aqui
       />
-
       <ButtonPersonal
-        title={<Plus />}
+        title={<Plus color={"#ffff"} />}
         onPress={handlePressAdd}
         style={{ transform: [{ translateY: 2 }] }}
       />

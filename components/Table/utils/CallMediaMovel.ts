@@ -13,6 +13,6 @@ export function calcularMediaMovel(
     mediaMovel.push(soma / periodo);
   }
 
-  console.log(mediaMovel)
+
   return mediaMovel;
 }

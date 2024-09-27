@@ -24,7 +24,6 @@ export function calcularMediaBid(data: ReturnData[]): number {
 }
 
 export function filterBid(Data: any) {
-  console.log(Data)
   return Data.map((c: any) => {
     return parseFloat(c.bid);
   });

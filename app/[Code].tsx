@@ -20,10 +20,10 @@ import { Color } from "@/constants/Color";
 import ProgressDay from "@/components/Progress/ProgressDay";
 import { Undo2 } from "lucide-react-native";
 import ButtonPersonal from "@/components/Buttons/Button";
-import { getAllDataCotacao } from "@/services/getCotacao";
 import Change from "@/components/icon/Cambio";
-import ChangeOption from "@/components/BoxMoeda/ChageOption/ChangeOption";
+import ChangeOption from "@/components/ChageOption/ChangeOption";
 import { calcularMediaMovel } from "@/components/Table/utils/CallMediaMovel";
+import { getAllDataCotacao } from "@/services/GetCotacao";
 
 export interface ReturnData {
   code: string;
@@ -69,7 +69,7 @@ export default function CodePage() {
 
   const MediaMovel = useMemo(() => {
     if (Data) {
-      console.log(Data.length)
+
       return calcularMediaMovel(Data, TimeSelect);
     }
     return [0];

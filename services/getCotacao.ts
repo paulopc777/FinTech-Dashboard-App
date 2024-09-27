@@ -16,7 +16,7 @@ export const getValorCotacao = async ({ Code }: Props) => {
     }
     return false;
   } catch (e) {
-    console.log(e);
+
     return false;
   }
 };
@@ -32,7 +32,7 @@ export const getAllDataCotacao = async ({ Code, Days }: Props) => {
     }
     return false;
   } catch (err) {
-    console.log(err);
+
     return false;
   }
 };

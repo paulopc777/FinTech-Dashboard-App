@@ -12,7 +12,7 @@ interface ButtonProp {
   styleDiv?: any;
 }
 
-const ButtonStyle = StyleSheet.create({
+export const ButtonStyle = StyleSheet.create({
   button: {
     display: "flex",
     justifyContent: "center",
@@ -37,7 +37,7 @@ export default function ButtonPersonal({
       onPress={onPress}
       style={{ ...MainStyles.Shadown, ...ButtonStyle.button }}
     >
-      <Text style={{ color: Color.text_primary, ...style }}>{title}</Text>
+      <Text style={{ color: Color.text_primary,...style }}>{title}</Text>
     </TouchableOpacity>
   );
 }

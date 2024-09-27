@@ -11,6 +11,6 @@ export function ConverterMoedaParaFloat(valor: string) {
    
 
   // 4. Converter a string para float
- console.log(valorLimpo)
+
   return parseFloat(valorLimpo);
 }

@@ -42,7 +42,11 @@ export default function Title({
           {FormatStringThoBRL(price)}
         </Text>
         <Text style={{ ...style, marginTop: 7 }}>
-          {percent ? percent : "-"}
+          {percent
+            ? parseFloat(percent) > 0
+              ? `+${percent}`
+              : `${percent}`
+            : "-"}
         </Text>
       </View>
     </View>
