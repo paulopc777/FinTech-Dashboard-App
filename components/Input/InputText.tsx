@@ -4,10 +4,12 @@ import React, { Dispatch, SetStateAction } from "react";
 import { MainStyles } from "@/styles/main";
 import {
   NativeSyntheticEvent,
+  StyleProp,
   StyleSheet,
   TextInput,
   TextInputChangeEventData,
   TextInputKeyPressEventData,
+  TextStyle,
 } from "react-native";
 
 const style = StyleSheet.create({
@@ -25,6 +27,8 @@ interface InputProps {
   onChange: (text: string) => void; //
   placeholder: string;
   handlePressEnter: () => void; // Corrigido o tipo da função
+  styleText?: TextStyle
+  
 }
 
 export default function InputText({
@@ -32,6 +36,7 @@ export default function InputText({
   value,
   placeholder,
   handlePressEnter,
+  styleText,
 }: InputProps) {
   return (
     <TextInput
@@ -41,6 +46,7 @@ export default function InputText({
         ...style.input,
         ...MainStyles.Text_second,
         ...MainStyles.Shadown,
+        ...styleText,
       }}
       placeholder={placeholder}
       inputMode="text"

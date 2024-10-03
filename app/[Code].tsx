@@ -14,16 +14,15 @@ import { Inter_900Black, useFonts } from "@expo-google-fonts/inter";
 import LineProgress from "@/components/Progress/LineProgress";
 import LineChartComponent from "@/components/Table/LineChart";
 import { filterBid } from "@/view/utils/Callculators";
-import Fontisto from "@expo/vector-icons/Fontisto";
 import { Color } from "@/constants/Color";
 
 import ProgressDay from "@/components/Progress/ProgressDay";
 import { Undo2 } from "lucide-react-native";
 import ButtonPersonal from "@/components/Buttons/Button";
-import Change from "@/components/icon/Cambio";
 import ChangeOption from "@/components/ChageOption/ChangeOption";
 import { calcularMediaMovel } from "@/components/Table/utils/CallMediaMovel";
 import { getAllDataCotacao } from "@/services/GetCotacao";
+import Volatilidade from "@/components/Indicadores/Volatilidade";
 
 export interface ReturnData {
   code: string;
@@ -69,7 +68,6 @@ export default function CodePage() {
 
   const MediaMovel = useMemo(() => {
     if (Data) {
-
       return calcularMediaMovel(Data, TimeSelect);
     }
     return [0];
@@ -92,7 +90,6 @@ export default function CodePage() {
                   TimeSelect={`Ultimos ${TimeSelect} Dias`}
                   data={Data}
                 />
-
                 <View style={{ ...MainStyles.container_item }}>
                   <LineChartComponent
                     priceMid={parseFloat(Data[0].bid)}
@@ -132,9 +129,11 @@ export default function CodePage() {
                     />
                   </View>
                 </View>
-
                 <View style={{ ...MainStyles.container_item }}>
                   <ChangeOption value={Data[0].bid} />
+                </View>
+                <View style={{ ...MainStyles.container_item }}>
+                  <Volatilidade Data={Data} />
                 </View>
               </ScrollView>
             </>

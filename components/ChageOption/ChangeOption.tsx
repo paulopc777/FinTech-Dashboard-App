@@ -34,18 +34,14 @@ export default function ChangeOption({ value }: Props) {
 
   return (
     <View>
+      <Text style={{ ...MainStyles.Text_primary, marginTop: 10, fontSize: 20 }}>
+        Cambio de Moedas
+      </Text>
       <Text
         style={{ ...MainStyles.Text_primary, marginTop: 10, marginBottom: 10 }}
       >
         Valor atual : {FormatStringThoBRL(value)}
       </Text>
-      <InputText
-        placeholder="digite o valor "
-        value={Coin}
-        onChange={setCoin}
-        handlePressEnter={handleChangeValue}
-
-      />
 
       <View
         style={{
@@ -53,18 +49,25 @@ export default function ChangeOption({ value }: Props) {
           marginTop: 10,
           marginBottom: 5,
           alignItems: "center",
-          justifyContent: "space-evenly",
+          justifyContent: "flex-start",
+          gap: 40,
         }}
       >
+        <InputText
+          placeholder="digite o valor"
+          value={Coin}
+          onChange={setCoin}
+          handlePressEnter={handleChangeValue}
+          styleText={{ height: 40, width: `${60}%` }}
+        />
         <ButtonPersonal
           title={<Replace color={"#fff"} />}
           onPress={handleChangeValue}
         />
-
-        <Text style={MainStyles.Text_primary}>
-          {Value.length > 0 ? Value : "esperando um numero"}
-        </Text>
       </View>
+      <Text style={{ ...MainStyles.Text_primary, marginTop: 10, fontSize: 20 }}>
+        {Value.length > 0 ? Value : "esperando um numero"}
+      </Text>
     </View>
   );
 }

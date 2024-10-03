@@ -43,6 +43,7 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "^15.7.1",
     "react-native-web": "~0.19.10",
+    "react-thermometer-component": "^1.0.1",
     "toastify-react-native": "^5.0.1"
   },
   "devDependencies": {
