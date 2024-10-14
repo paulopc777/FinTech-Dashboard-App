@@ -21,4 +21,5 @@ O **FinTech Dashboard App** é uma plataforma completa para exibir cotações de
 
 - **Frontend**: React.js / React Native / Expo
 - **Gráficos**: Chart.js / React Native Gifted Charts
-- **API de Cotações**: Axios para busca de dados de APIs financeiras
+- **API de Cotações**: Axios para busca de dados de [API financeiras](https://docs.awesomeapi.com.br/api-de-moedas)
+

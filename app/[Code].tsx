@@ -1,3 +1,4 @@
+import React from "react";
 import { MainStyles } from "@/styles/main";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useMemo, useState } from "react";

@@ -26,7 +26,14 @@ export default function Volatilidade({ Data }: { Data: ReturnData[] }) {
     labels: [callRSI(Data, 1).toFixed(2)],
     datasets: [
       {
-        data: [(callRSI(Data, 1) / 100),(callRSI(Data, 1) / 100),(callRSI(Data, 1) / 100),(callRSI(Data, 1) / 100),(callRSI(Data, 1) / 100),(callRSI(Data, 1) / 100)],
+        data: [
+          callRSI(Data, 1) / 100,
+          callRSI(Data, 1) / 100,
+          callRSI(Data, 1) / 100,
+          callRSI(Data, 1) / 100,
+          callRSI(Data, 1) / 100,
+          callRSI(Data, 1) / 100,
+        ],
       },
     ],
   };
@@ -42,7 +49,7 @@ export default function Volatilidade({ Data }: { Data: ReturnData[] }) {
         style={{
           ...MainStyles.flex,
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: "center",
         }}
       >
         <Thermometer
@@ -54,18 +61,6 @@ export default function Volatilidade({ Data }: { Data: ReturnData[] }) {
           size=""
           height="150"
         />
-        <View>
-          <Text style={{ ...MainStyles.Text_primary, fontSize: 16 }}>RSI</Text>
-          <LineChart
-            data={data}
-            verticalLabelRotation={30}
-            chartConfig={chartConfig}
-            bezier
-            
-            width={300}
-            height={220}
-          />
-        </View>
       </View>
     </>
   );

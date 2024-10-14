@@ -31,7 +31,7 @@ export function calculateVolatility(Data: ReturnData[]): number {
   const variacao = ((valorAtual - valorAnterior) / valorAnterior) * 100;
 
   let resultado = limitarValor(
-    parseInt((FormateNumberNegative(variacao) * 2).toFixed(2)),
+    parseInt((FormateNumberNegative(variacao) * 4).toFixed(2)),
     10,
     100
   );
@@ -39,6 +39,7 @@ export function calculateVolatility(Data: ReturnData[]): number {
 
   return resultado;
 }
+
 export function callRSI(Data: ReturnData[], index: number): number {
   const data = Data.map((d) => parseFloat(d.pctChange));
 
