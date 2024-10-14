@@ -1,55 +1,24 @@
-# Listas
+# FinTech Dashboard App
 
-   Flat list so renderiza oss componentes que podem aparecer na tela , os Scroll view renderiza os todos os componentes 
+![img](./@ignore/i1.png)
 
+## Descrição
 
-# Welcome to your Expo app 👋
+O **FinTech Dashboard App** é uma plataforma completa para exibir cotações de moedas, criptomoedas, e bonds (como ouro), com a possibilidade de realizar câmbio para BRL. A aplicação é projetada tanto para web quanto para mobile, fornecendo gráficos e indicadores detalhados para análise de variações de preço e desempenho de ativos ao longo do tempo.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+![img](./@ignore/i2.png)
 
-## Get started
+## Funcionalidades
 
-1. Install dependencies
+- **Cotações em tempo real** de moedas (USD, EUR, BRL, etc.), criptomoedas (Bitcoin, Ethereum, etc.), e bonds (Ouro).
+- **Conversão para BRL**: Converta instantaneamente qualquer moeda ou ativo para o Real Brasileiro.
+- **Gráficos interativos**: Visualize as tendências dos preços com gráficos de alta e baixa, comparações, e intervalos temporais ajustáveis.
+- **Indicadores financeiros**: Exiba indicadores como volume de negociação, variação percentual, preço máximo/mínimo, e mais.
+- **Alertas e notificações**: Configure alertas para ser notificado quando o preço atingir um valor desejado.
+- **Interface intuitiva**: Design moderno e acessível, projetado para ser responsivo e amigável tanto em dispositivos móveis quanto na web.
 
-   ```bash
-   npm install
-   ```
+## Tecnologias Utilizadas
 
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- **Frontend**: React.js / React Native / Expo
+- **Gráficos**: Chart.js / React Native Gifted Charts
+- **API de Cotações**: Axios para busca de dados de APIs financeiras

@@ -7,10 +7,7 @@ import Reload from "../icon/Reload";
 import Trash from "../icon/Trash";
 import { Toast } from "toastify-react-native";
 import { Redirect, useRouter } from "expo-router";
-import { getValorCotacao } from '../../services/GetCotacao';
-
-
-
+import { GetValorCotacao } from "../../services/GetCotacao";
 
 interface Prop {
   title: string;
@@ -32,7 +29,7 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
   const router = useRouter();
 
   async function dataGet() {
-    getValorCotacao({ Code: Code })
+    GetValorCotacao({ Code: Code })
       .then((res) => {
         if (!res) {
           handleDelete(Code);

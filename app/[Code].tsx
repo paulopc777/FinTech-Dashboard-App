@@ -21,8 +21,9 @@ import { Undo2 } from "lucide-react-native";
 import ButtonPersonal from "@/components/Buttons/Button";
 import ChangeOption from "@/components/ChageOption/ChangeOption";
 import { calcularMediaMovel } from "@/components/Table/utils/CallMediaMovel";
-import { getAllDataCotacao } from "@/services/GetCotacao";
+
 import Volatilidade from "@/components/Indicadores/Volatilidade";
+import { GetAllDataCotacao } from "@/services/GetCotacao";
 
 export interface ReturnData {
   code: string;
@@ -46,7 +47,7 @@ export default function CodePage() {
   const router = useRouter();
 
   async function get(Days?: string) {
-    const d = await getAllDataCotacao({ Code: Code.toString(), Days: Days });
+    const d = await GetAllDataCotacao({ Code: Code.toString(), Days: Days });
     const dd = d.map(
       ({ name, high, low, pctChange, bid, varBid }: ReturnData) => {
         return {
