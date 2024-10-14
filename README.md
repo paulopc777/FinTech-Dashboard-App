@@ -1,12 +1,20 @@
 # FinTech Dashboard App
 
-![img](./@ignore/i1.png)
+<table>
+  <tr>
+    <td valign="top"><img src="./@ignore/i1.png" height="400" /></td>
+    <td valign="top"> <img src="./@ignore/i2.png" height="400" /></td>
+      <td valign="top"> <img src="./@ignore/i3.png" height="400" /></td>
+  </tr>
+</table>
 
 ## Descrição
 
 O **FinTech Dashboard App** é uma plataforma completa para exibir cotações de moedas, criptomoedas, e bonds (como ouro), com a possibilidade de realizar câmbio para BRL. A aplicação é projetada tanto para web quanto para mobile, fornecendo gráficos e indicadores detalhados para análise de variações de preço e desempenho de ativos ao longo do tempo.
 
-![img](./@ignore/i2.png)
+O aplicativo utiliza o **AsyncStorage** para armazenar localmente os ativos selecionados pelo usuário,
+garantindo que as preferências e dados de ativos sejam preservados entre as sessões do aplicativo,
+mesmo quando o dispositivo estiver offline.
 
 ## Funcionalidades
 
@@ -22,4 +30,3 @@ O **FinTech Dashboard App** é uma plataforma completa para exibir cotações de
 - **Frontend**: React.js / React Native / Expo
 - **Gráficos**: Chart.js / React Native Gifted Charts
 - **API de Cotações**: Axios para busca de dados de [API financeiras](https://docs.awesomeapi.com.br/api-de-moedas)
-

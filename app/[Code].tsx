@@ -132,10 +132,10 @@ export default function CodePage() {
                   </View>
                 </View>
                 <View style={{ ...MainStyles.container_item }}>
-                  <ChangeOption value={Data[0].bid} />
+                  <Volatilidade Data={Data} />
                 </View>
                 <View style={{ ...MainStyles.container_item }}>
-                  <Volatilidade Data={Data} />
+                  <ChangeOption value={Data[0].bid} />
                 </View>
               </ScrollView>
             </>
