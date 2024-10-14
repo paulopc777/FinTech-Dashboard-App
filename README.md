@@ -1,10 +1,10 @@
 # FinTech Dashboard App
 
-<table>
+<table style="border-collapse: collapse; border: none;">
   <tr>
-    <td valign="top"><img src="./@ignore/i1.png" height="400" /></td>
-    <td valign="top"> <img src="./@ignore/i2.png" height="400" /></td>
-      <td valign="top"> <img src="./@ignore/i3.png" height="400" /></td>
+    <td valign="top" style="border: none;"><img src="./@ignore/i1.png" height="400" /></td>
+    <td valign="top" style="border: none;"> <img src="./@ignore/i2.png" height="400" /></td>
+      <td valign="top" style="border: none;"> <img src="./@ignore/i3.png" height="400" /></td>
   </tr>
 </table>
 
