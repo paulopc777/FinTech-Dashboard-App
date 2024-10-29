@@ -5,6 +5,10 @@ import Row from "./components/Row";
 import Button from "./components/Button";
 import calculator, { initialState } from "./util/calculator";
 import { Color } from "../../constants/Color";
+import { TouchableOpacity } from "react-native";
+import { Undo2 } from "lucide-react-native";
+import { useRouter } from "expo-router";
+import { withNavigation } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   container: {
@@ -21,11 +25,35 @@ const styles = StyleSheet.create({
   },
 });
 
+const ButtonExit = () => {
+  const route = useRouter();
+  return (
+    <TouchableOpacity
+      style={{
+        position: "absolute",
+        top: 10,
+        right: 10,
+        backgroundColor: Color.green,
+        padding: 10,
+        borderRadius: 100,
+      }}
+      onPress={() => {
+        route.replace(`/`);
+      }}
+    >
+      <Undo2 color={"#fff"} />
+    </TouchableOpacity>
+  );
+};
+
 export default class App extends React.Component {
   state = initialState;
 
   handleTap = (type, value) => {
     this.setState((state) => calculator(type, value, state));
+  };
+  navigateToAnotherScreen = () => {
+    // Replace 'AnotherScreen' with your screen name
   };
 
   render() {
@@ -102,6 +130,7 @@ export default class App extends React.Component {
             />
           </Row>
         </SafeAreaView>
+        <ButtonExit />
       </View>
     );
   }
