@@ -1,25 +1,27 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet, Text, Dimensions } from "react-native";
+import { Color } from "../../../constants/Color";
 
 const screen = Dimensions.get("window");
 const buttonWidth = screen.width / 4;
 
 const styles = StyleSheet.create({
   text: {
-    color: "#fff",
+    color: Color.container,
     fontSize: 25
   },
   textSecondary: {
-    color: "#060606"
+    color:Color.text_primary
   },
   button: {
-    backgroundColor: "#333333",
+    backgroundColor: Color.border,
     flex: 1,
     height: Math.floor(buttonWidth - 10),
     alignItems: "center",
     justifyContent: "center",
     borderRadius: Math.floor(buttonWidth),
-    margin: 5
+    margin: 5,
+    color:Color.text_primary
   },
   buttonDouble: {
     width: screen.width / 2 - 10,
@@ -28,10 +30,10 @@ const styles = StyleSheet.create({
     paddingLeft: 40
   },
   buttonSecondary: {
-    backgroundColor: "#a6a6a6"
+    backgroundColor: Color.text_dark
   },
   buttonAccent: {
-    backgroundColor: "#f09a36"
+    backgroundColor: Color.green
   }
 });
 

@@ -4,15 +4,16 @@ import { StyleSheet, Text, View, StatusBar, SafeAreaView } from "react-native";
 import Row from "./components/Row";
 import Button from "./components/Button";
 import calculator, { initialState } from "./util/calculator";
+import { Color } from "../../constants/Color";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#202020",
+    backgroundColor: Color.background_container,
     justifyContent: "flex-end",
   },
   value: {
-    color: "#fff",
+    color: Color.text_primary,
     fontSize: 40,
     textAlign: "right",
     marginRight: 20,
@@ -92,11 +93,7 @@ export default class App extends React.Component {
           </Row>
 
           <Row>
-            <Button
-              text="0"
-              
-              onPress={() => this.handleTap("number", 0)}
-            />
+            <Button text="0" onPress={() => this.handleTap("number", 0)} />
             <Button text="." onPress={() => this.handleTap("number", ".")} />
             <Button
               text="="
