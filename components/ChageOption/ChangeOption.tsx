@@ -23,7 +23,8 @@ export default function ChangeOption({ value }: Props) {
       return;
     }
     if (Coin.length > 0) {
-      const res = parseFloat(Coin) * parseFloat(value);
+      const values = Coin.replace(",",".")
+      const res = parseFloat(values) * parseFloat(value);
       const d = res.toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL",

@@ -24,7 +24,7 @@ import ChangeOption from "@/components/ChageOption/ChangeOption";
 import { calcularMediaMovel } from "@/components/Table/utils/CallMediaMovel";
 
 import Volatilidade from "@/components/Indicadores/Volatilidade";
-import { GetAllDataCotacao } from "@/services/GetCotacao";
+import { GetAllDataCotacao } from "@/services/getCotacao";
 
 export interface ReturnData {
   code: string;

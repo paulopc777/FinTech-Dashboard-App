@@ -7,10 +7,5 @@ export function ConverterMoedaParaFloat(valor: string) {
   // 2. Substituir a vírgula por ponto
    valorLimpo = valorLimpo.replace(",", ".");
 
-  // 3. Remover os pontos que representam milhar
-   
-
-  // 4. Converter a string para float
-
   return parseFloat(valorLimpo);
 }
