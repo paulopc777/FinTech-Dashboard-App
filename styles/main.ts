@@ -52,7 +52,7 @@ export const MainStyles = StyleSheet.create({
     fontFamily: Font.Inter_Black,
   },
   Text_primary: {
-    color: Color.text_primary,
+    color: Color.primary,
     fontFamily: Font.Inter_Black,
   },
   Text_second: {

@@ -11,20 +11,17 @@ import { FormatStringThoBRL } from "@/view/utils/Callculators";
 
 interface Props {
   dataValues: number[];
-  priceMid: number;
-  MediaMovel?: number[];
+
 }
 
 export default function LineChartComponent({
   dataValues,
-  priceMid,
-  MediaMovel,
+
 }: Props) {
   const screenWidth = Dimensions.get("window").width - 125;
 
-  const MaxValue = Math.max.apply(null, dataValues);
   const MinValue = Math.min.apply(null, dataValues);
-  //
+
 
   let ptData: lineDataItem[] = dataValues.map((d, index) => {
     return { value: parseFloat(d.toFixed(2)), date: index.toString() };
@@ -36,43 +33,25 @@ export default function LineChartComponent({
       areaChart
       curved
       data={ptData.reverse()}
-      rotateLabel
       width={screenWidth}
-      hideDataPoints
-      color={Color.green}
-      thickness={2}
-      startFillColor="rgba(20,105,81,0.3)"
-      endFillColor="rgba(20,85,81,0.01)"
-      initialSpacing={2}
-      endSpacing={0}
+      color={"rgb(37, 20, 173)"}
+      startFillColor="rgb(37, 20, 173)"
+      endFillColor="#ffff"
       noOfSections={2}
-      adjustToWidth={true}
-      yAxisColor="white"
-      yAxisOffset={MinValue - 0.1}
-      yAxisThickness={0}
-      rulesColor={Color.text_second}
-      yAxisTextStyle={{ color: Color.text_second }}
-      xAxisColor={Color.text_second}
+      yAxisOffset={MinValue - (MinValue * 0.001)}
       pointerConfig={{
-        pointerStripHeight: 160,
         pointerStripColor: "lightgray",
         pointerStripWidth: 2,
         pointerColor: "lightgray",
         radius: 6,
-        pointerLabelWidth: 100,
-        pointerLabelHeight: 90,
-
         activatePointersOnLongPress: true,
         autoAdjustPointerLabelPosition: false,
         pointerLabelComponent: (items: any) => {
           return (
             <View
               style={{
-                height: 90,
-                width: `${100}%`,
                 justifyContent: "center",
-                marginTop: -40,
-                marginLeft: -40,
+
                 position: "absolute",
                 zIndex: 100,
               }}
@@ -82,7 +61,7 @@ export default function LineChartComponent({
                   paddingHorizontal: 14,
                   paddingVertical: 6,
                   borderRadius: 16,
-                  backgroundColor: "white",
+                  backgroundColor: Color.primary,
                   width: 130,
                 }}
               >
@@ -92,6 +71,8 @@ export default function LineChartComponent({
                     textAlign: "center",
                     fontSize: 15,
                     userSelect: "none",
+                    color: Color.background_white,
+                    fontFamily: "Inter_500Medium",
                     zIndex: 100,
                   }}
                 >

@@ -13,4 +13,13 @@ export default StyleSheet.create({
     height: 40,
     borderRadius: BorderRadius.small,
   },
+  ButtonOutline: {
+    width: 40,
+    height: 40,
+    borderRadius: BorderRadius.small,
+    backgroundColor: "transparent",
+    borderWidth: 1,
+    borderColor: Color.primary,
+    color: Color.primary,
+  },
 });

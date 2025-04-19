@@ -58,7 +58,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View >
         <StatusBar barStyle="light-content" />
         <SafeAreaView>
           <Text style={styles.value}>

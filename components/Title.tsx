@@ -19,23 +19,22 @@ export default function Title({
   percent,
 }: Props) {
   const style =
-    parseFloat(percent) < 0 ? MainStyles.Text_red : MainStyles.Text_green;
+    parseFloat(percent) < 0 ? MainStyles.Text_second : MainStyles.Text_primary;
   return (
     <View style={{ ...MainStyles.container_item, ...MainStyles.Shadown }}>
       <Text
         style={{
           ...MainStyles.Text_primary,
-
           fontSize: fontSizeName ? fontSizeName : 20,
         }}
       >
-        {name}{" "}
+        {name}
       </Text>
       <View style={{ ...MainStyles.flex }}>
         <Text
           style={{
-            ...MainStyles.Text_primary,
-            ...MainStyles.Text_green,
+            ...MainStyles.Text_title,
+
             fontSize: fontSizePrice ? fontSizePrice : 40,
           }}
         >

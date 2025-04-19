@@ -6,7 +6,7 @@ import ButtonPersonal from "../Buttons/Button";
 import { Color } from "@/constants/Color";
 import { MainStyles } from "@/styles/main";
 import { useState } from "react";
-import { Calculator, Heart, Plus, Search } from "lucide-react-native";
+import { Calculator, Heart, Newspaper, Plus, Search } from "lucide-react-native";
 import { useRouter } from "expo-router";
 import Input from "../ux/Input/Input";
 import Button from "../ux/Button/Button";
@@ -38,7 +38,18 @@ export default function Header({ setData }: MenuPros) {
 
       <Input
         placeholder="Adicionar Ativo"
-        Icon={<Search color={Color.text_second} />}
+        Icon={
+          <Button
+            onPress={handlePressAdd}
+            style={{
+              width: 25,
+              height: 25,
+            }}
+            Variant="outline"
+          >
+            <Plus color={Color.primary} size={20} />
+          </Button>
+        }
         value={value}
         onChangeText={(e) => setValue(e)}
         onKeyPress={(e) => {
@@ -49,14 +60,12 @@ export default function Header({ setData }: MenuPros) {
       />
 
       <View style={{ flexDirection: "row", gap: 10 }}>
-        <Button
-          onPress={handlePressAdd}
-        >
-          <Plus color={"#ffff"} />
+        <Button>
+          <Newspaper color={Color.background_white} />
         </Button>
 
         <Button>
-          <Heart color={"#ffff"} />
+          <Heart color={Color.background_white} />
         </Button>
       </View>
 
