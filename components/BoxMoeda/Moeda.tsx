@@ -18,12 +18,57 @@ interface Prop {
   timestamp: string;
   varBid: number;
   name: string
+  code: string
 }
 
 export interface PropMoeda {
   Code: string;
   handleDelete: (Code: string) => void;
 }
+
+export const RenderLogo = ({ code, name }: { code: string, name: string }) => {
+  const [isCrypto, setIsCrypto] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    // Check if the crypto logo exists
+    fetch(`https://cdn.investing.com/crypto-logos/20x20/v2/${name}.png`)
+      .then((response) => {
+        setIsCrypto(response.ok);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsCrypto(false);
+      });
+  }, [code]);
+
+  if (isCrypto === null) {
+    return <ActivityIndicator size="small" color={Color.text_primary} />;
+  }
+
+  return (
+    <>
+      {isCrypto ? (
+        <Image
+          source={{
+            uri: `https://cdn.investing.com/crypto-logos/20x20/v2/${name}.png`,
+          }}
+          style={{
+            width: 20,
+            height: 20,
+          }} />
+      ) : (
+        <Image
+          source={{
+            uri: `https://flagcdn.com/w320/${code}.png`,
+          }}
+          style={{
+            width: 20,
+            height: 20,
+          }} />
+      )}
+    </>
+  );
+};
 
 export default function Moeda({ Code, handleDelete }: PropMoeda) {
   const [data, setData] = useState<Prop>();
@@ -57,6 +102,7 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
               style: "currency",
               currency: "BRL",
             }),
+            code: exchangeData.code,
             timestamp: exchangeData.create_date,
             varBid: parseFloat(parseFloat(exchangeData.pctChange).toFixed(2)),
             name: exchangeData.name.split("/")[0],
@@ -96,15 +142,7 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
           >
             <View style={{ ...MainStyles.flex, justifyContent: "space-between" }}>
               <View style={{ ...MainStyles.flex, alignItems: "center", gap: 10 }}>
-                <Image
-                  source={{
-                    uri: `https://cdn.investing.com/crypto-logos/20x20/v2/${data.name.toLocaleLowerCase()}.png`,
-                  }}
-                  style={{
-                    width: 20,
-                    height: 20,
-                  }} />
-
+                <RenderLogo code={data.code.slice(0, 2).toLocaleLowerCase()} name={data.name.toLocaleLowerCase()} />
                 <View>
                   <Text style={MainStyles.Text_title}>{data.name}</Text>
                   <Text style={{ color: Color.text_primary, fontSize: 10, fontFamily: "Inter_500Medium" }}>{data.title}</Text>

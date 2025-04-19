@@ -8,7 +8,6 @@ import { GetstoreData, removeItem, UpdateData } from "@/Store/store";
 import { Inter_900Black, Inter_500Medium, useFonts } from "@expo-google-fonts/inter";
 import ToastManager from "toastify-react-native";
 import Header from "@/components/Header/Header";
-import Flag from "@/components/Flags/Flags";
 
 
 export default function HomePage() {
