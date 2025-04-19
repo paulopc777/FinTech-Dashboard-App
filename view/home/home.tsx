@@ -47,10 +47,7 @@ export default function HomePage() {
             {fontLoad && (
                 <View style={{ width: `100%` }}>
                     <Header setData={setData} />
-                    <View style={{ flexDirection: "row", gap: 10, alignItems: "center" }}>
-                        <Flag countryCode="ASEAN" />
-                        <Flag countryCode="WS" />
-                    </View>
+
                     {!!data && (
                         <FlatList
                             style={{ width: `${100}%` }}
