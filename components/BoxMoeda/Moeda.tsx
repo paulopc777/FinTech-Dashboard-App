@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Image, Text, TouchableOpacity, View } from "react-native";
 import { MainStyles } from "@/styles/main";
 
 import { Color } from "@/constants/Color";
@@ -8,6 +8,7 @@ import Trash from "../icon/Trash";
 import { Toast } from "toastify-react-native";
 import { Redirect, useRouter } from "expo-router";
 import { GetValorCotacao } from "../../services/getCotacao";
+import Card from "../ux/Card/Card";
 
 interface Prop {
   title: string;
@@ -16,6 +17,7 @@ interface Prop {
   low: string;
   timestamp: string;
   varBid: number;
+  name: string
 }
 
 export interface PropMoeda {
@@ -57,6 +59,7 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
             }),
             timestamp: exchangeData.create_date,
             varBid: parseFloat(parseFloat(exchangeData.pctChange).toFixed(2)),
+            name: exchangeData.name.split("/")[0],
           });
         }
       })
@@ -77,43 +80,68 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
   return (
     <>
       {!!data ? (
-        <TouchableOpacity
-          style={{ ...MainStyles.container_item, ...MainStyles.Shadown }}
-          onPress={() => {
-            router.replace(`/${Code}`);
+        <Card
+          style={{
+            padding: 10,
           }}
         >
-          <View style={{ ...MainStyles.flex, justifyContent: "space-between" }}>
-            <Text style={MainStyles.Text_title}>{data.title}</Text>
-            {data.varBid > 0 ? (
-              <Text
-                style={{
-                  ...MainStyles.Text_green,
-                }}
-              >
-                +{data.varBid}%
-              </Text>
-            ) : (
-              <Text
-                style={{
-                  ...MainStyles.Text_red,
-                }}
-              >
-                {data.varBid}%
-              </Text>
-            )}
-          </View>
-
-          <Text style={{ ...MainStyles.Text_primary, fontSize: 30 }}>
-            {data.value}
-          </Text>
-
-          <Trash
+          <TouchableOpacity
             onPress={() => {
-              handleDelete(Code);
+              router.replace(`/${Code}`);
             }}
-          />
-        </TouchableOpacity>
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <View style={{ ...MainStyles.flex, justifyContent: "space-between" }}>
+              <View style={{ ...MainStyles.flex, alignItems: "center", gap: 10 }}>
+                <Image
+                  source={{
+                    uri: `https://cdn.investing.com/crypto-logos/20x20/v2/${data.name.toLocaleLowerCase()}.png`,
+                  }}
+                  style={{
+                    width: 20,
+                    height: 20,
+                  }} />
+
+                <View>
+                  <Text style={MainStyles.Text_title}>{data.name}</Text>
+                  <Text style={{ color: Color.text_primary, fontSize: 10, fontFamily: "Inter_500Medium" }}>{data.title}</Text>
+                </View>
+              </View>
+
+
+              {data.varBid > 0 ? (
+                <Text
+                  style={{
+                    ...MainStyles.Text_green,
+                  }}
+                >
+                  +{data.varBid}%
+                </Text>
+              ) : (
+                <Text
+                  style={{
+                    ...MainStyles.Text_red,
+                  }}
+                >
+                  {data.varBid}%
+                </Text>
+              )}
+            </View>
+
+            <Text style={{ ...MainStyles.Text_primary, fontSize: 30 }}>
+              {data.value}
+            </Text>
+
+            <Trash
+              onPress={() => {
+                handleDelete(Code);
+              }}
+            />
+          </TouchableOpacity>
+        </Card >
       ) : (
         <View style={{ ...MainStyles.container_item, ...MainStyles.Shadown }}>
           <Text style={MainStyles.Text_primary}>Carregando ...</Text>
@@ -123,9 +151,10 @@ export default function Moeda({ Code, handleDelete }: PropMoeda) {
             }}
           />
           <Reload onPress={handleUpdate} />
-          <ActivityIndicator color={Color.green} />
+          <ActivityIndicator color={Color.background} />
         </View>
-      )}
+      )
+      }
     </>
   );
 }

@@ -60,11 +60,11 @@ export const MainStyles = StyleSheet.create({
     fontFamily: Font.Inter_Black,
   },
   Text_green: {
-    color: Color.green,
     fontFamily: Font.Inter_Black,
+    color: Color.primary,
   },
   Text_red: {
-    color: "#F25270",
+    color: Color.text_primary,
     fontFamily: Font.Inter_Black,
   },
   flex: {
